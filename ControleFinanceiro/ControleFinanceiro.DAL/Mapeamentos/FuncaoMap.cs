@@ -13,6 +13,7 @@ namespace ControleFinanceiro.DAL.Mapeamentos
         {
             builder.Property(f => f.Id).ValueGeneratedOnAdd();
             builder.Property(f => f.Descricao).IsRequired().HasMaxLength(50);
+
             builder.HasData(
                 new Funcao
                 {
@@ -21,13 +22,16 @@ namespace ControleFinanceiro.DAL.Mapeamentos
                     NormalizedName = "ADMINISTRADOR",
                     Descricao = "Administrador do sistema"
                 },
+
+
                 new Funcao
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = "Usuario",
                     NormalizedName = "USUARIO",
-                    Descricao = "Usuario do sistema"
+                    Descricao = "Usuário do sistema"
                 });
+
             builder.ToTable("Funcoes");
         }
     }

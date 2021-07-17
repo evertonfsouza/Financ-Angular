@@ -15,7 +15,7 @@ namespace ControleFinanceiro.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.15")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -91,7 +91,9 @@ namespace ControleFinanceiro.DAL.Migrations
             modelBuilder.Entity("ControleFinanceiro.BLL.Models.Despesa", b =>
                 {
                     b.Property<int>("DespesaId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Ano")
                         .HasColumnType("int");
@@ -121,6 +123,8 @@ namespace ControleFinanceiro.DAL.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("DespesaId");
+
+                    b.HasIndex("CartaoId");
 
                     b.HasIndex("CategoriaId");
 
@@ -166,17 +170,17 @@ namespace ControleFinanceiro.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d4d7715f-c4bb-47fd-a2d8-f9b03b9670c4",
-                            ConcurrencyStamp = "31ac4358-c32e-4eff-82fb-0bef59e91fd8",
+                            Id = "3edb4b13-dc12-488c-8b5a-0199cfc4fb24",
+                            ConcurrencyStamp = "07e4e7ed-5822-4d73-92eb-e828b4e86467",
                             Descricao = "Administrador do sistema",
                             Name = "Administrador",
                             NormalizedName = "ADMINISTRADOR"
                         },
                         new
                         {
-                            Id = "6e473919-6073-43a3-93b5-91cd278bfb42",
-                            ConcurrencyStamp = "62e2c5da-c74d-4884-8b98-7fadd465552b",
-                            Descricao = "Usuario do sistema",
+                            Id = "2ea76483-3ff8-4389-9208-dbb28a693c00",
+                            ConcurrencyStamp = "eb46d64c-5684-432d-a6fd-30d331b91848",
+                            Descricao = "Usuário do sistema",
                             Name = "Usuario",
                             NormalizedName = "USUARIO"
                         });
@@ -292,12 +296,12 @@ namespace ControleFinanceiro.DAL.Migrations
                         new
                         {
                             MesId = 10,
-                            Nome = "Novembro"
+                            Nome = "Outubro"
                         },
                         new
                         {
                             MesId = 11,
-                            Nome = "Outubro"
+                            Nome = "Novembro"
                         },
                         new
                         {
@@ -541,15 +545,15 @@ namespace ControleFinanceiro.DAL.Migrations
 
             modelBuilder.Entity("ControleFinanceiro.BLL.Models.Despesa", b =>
                 {
-                    b.HasOne("ControleFinanceiro.BLL.Models.Categoria", "Categoria")
+                    b.HasOne("ControleFinanceiro.BLL.Models.Cartao", "Cartao")
                         .WithMany("Despesas")
-                        .HasForeignKey("CategoriaId")
+                        .HasForeignKey("CartaoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ControleFinanceiro.BLL.Models.Cartao", "Cartao")
+                    b.HasOne("ControleFinanceiro.BLL.Models.Categoria", "Categoria")
                         .WithMany("Despesas")
-                        .HasForeignKey("DespesaId")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

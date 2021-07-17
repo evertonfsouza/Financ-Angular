@@ -1,4 +1,4 @@
-export class Tipo{
-    tipoId!: number;
-    nome!: string;
+export class Tipo {
+    tipoId: number;
+    nome: string;
 }

@@ -20,6 +20,7 @@ namespace ControleFinanceiro.DAL
         public DbSet<Usuario> Usuarios { get; set; }
 
         public Contexto(DbContextOptions<Contexto> opcoes) : base(opcoes) { }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
